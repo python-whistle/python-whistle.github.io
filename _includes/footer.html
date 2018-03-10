@@ -1,10 +1,17 @@
 <footer class="footer">
     <div class="container">
-
         <p class="text-center">
-            {{ site.title }} {{ site.time | date: '%Y' }} |
-            Powered by <a href="https://github.com/aksakalli/jekyll-doc-theme">Jekyll Doc Theme</a>
+            {{ site.title }} • 2015-{{ site.time | date: '%Y' }} • Apache License, Version 2.0
         </p>
-        <!-- <p class="text-muted">Place sticky footer content here.</p> -->
     </div>
 </footer>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-4678258-15"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-4678258-15');
+</script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
