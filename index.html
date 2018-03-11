@@ -13,17 +13,19 @@ layout: default
 <div class="header-container jumbotron">
     <div class="container">
         <h1>Medikit</h1>
-        <h2>Normalize and automate your python project's boilerplate</h2>
-        <p>Medikit automates updating all your projects common files and directory.</p>
-        <p>It can create your project, but more importantly update it along its lifetime.</p>
-        <p>It's not a new dependency. Files changed after its execution will be commited in your source tree, making
-            it required only for release managers.</p>
-        <p>You focus on writing amazing code, Medikit focuses on keeping it clean and ordered.</p>
+        <h2>Your automated release engineer assistant</h2>
+        <p>Medikit automates keeping your projects' boilerplate files and directory sane and up to date.</p>
+        <p>It (optionally) generates and maintains a bunch of files, updating them according to rules you define.</p>
+        <p>It's not a dependency. All changes are be commited in your source tree.</p>
+        <p>You write amazing code, Medikit focuses on keeping it clean and ordered.</p>
 
         <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="http://medikit.rdc.li/en/latest/install.html" target="_blank" role="button">Install</a>
-            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/" target="_blank" role="button">Documentation</a>
-            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/en/latest/features.html" target="_blank" role="button">Features</a>
+            <a class="btn btn-primary btn-lg" href="http://medikit.rdc.li/en/latest/install.html" target="_blank"
+               role="button">Install</a>
+            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/" target="_blank"
+               role="button">Documentation</a>
+            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/en/latest/features.html"
+               target="_blank" role="button">Features</a>
         </p>
     </div>
 </div>
@@ -55,13 +57,16 @@ layout: default
             <br>
             <div class="clearfix">
                 <div class="pull-left" style="margin-right:0.5em">
-                    <a class="github-button" href="https://github.com/python-medikit/medikit/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Medikit on GitHub"></a>
+                    <a class="github-button" href="https://github.com/python-medikit/medikit/fork"
+                       data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Medikit on GitHub"></a>
                 </div>
                 <div class="pull-left">
-                    <a class="github-button" href="https://github.com/python-medikit/medikit" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star Medikit on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/python-medikit/medikit" data-icon="octicon-star"
+                       data-size="large" data-show-count="true" aria-label="Star Medikit on GitHub">Star</a>
                 </div>
             </div>
-            <img src="img/medikit-logo.png" alt="" class="img-responsive">
+            <img src="img/medikit-logo.png" alt="Medikit, first-aid kit for release engineering in python."
+                 class="img-responsive">
         </div>
     </div>
 
@@ -69,7 +74,7 @@ layout: default
 
     <div class="row">
         <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h1>
+            <h2 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h2>
             <h3 class="text-center">Not a dependency</h3>
             <p>
                 Medikit is an “eventual” dependency, meaning that developpers won't need it to actually use the project.
@@ -77,7 +82,7 @@ layout: default
             </p>
         </div>
         <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h1>
+            <h2 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h2>
             <h3 class="text-center">One config file</h3>
             <p>
                 The only configuration file required is a <code>Projectfile</code>, which contains regular Python code.
@@ -87,7 +92,7 @@ layout: default
             </p>
         </div>
         <div class="col-sm-4">
-            <h1 class="text-center"><i class="fa fa-code-fork" aria-hidden="true"></i></h1>
+            <h2 class="text-center"><i class="fa fa-code-fork" aria-hidden="true"></i></h2>
             <h3 class="text-center">One entry point</h3>
             <p>
                 Once you run <code>medikit update</code>, you'll get a <code>Makefile</code> that contains everything
@@ -95,7 +100,212 @@ layout: default
                 newcomers can run <code>make help</code> to understand their possibilities.
             </p>
         </div>
+        <a name="features"></a>
     </div>
 
+    <hr>
+
+    <div class="row">
+        <h2>Features</h2>
+
+        <p>
+            The base building blocks of a Medikit-managed projects are combinable features.
+        </p>
+        <p>
+            To add a feature, you need a <code>Projectfile</code> at your project's root (which is written in python),
+            and <code>require(...)</code> the feature:
+        </p>
+
+        <pre><code class="python">from medikit import require
+python = require('python')
+
+python.setup(
+    name='acme'
+)</code></pre>
+
+        <p>
+            You then need to run <code>medikit update</code> to apply changes to your project's codebase (or <code>make
+            update</code>).
+        </p>
+
+        <h3>List of builtin features</h3>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Feature
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Artifacts
+                </th>
+                <th>
+                    Maturity
+                </th>
+            </tr>
+            {% assign sorted_features = site.data.features | sort: "name" | sort: "maturity" %}
+            {% for feature in sorted_features %}
+            <tr>
+                <td style="white-space: nowrap">
+                    <a href="http://medikit.rdc.li/en/latest/features/{{ feature.name }}.html"
+                       title="Read the {{ feature.name | capitalize }} feature documentation"
+                       target="_blank">
+                        <i class="fa fa-book"></i>&nbsp;<span class="sr-only">Documentation</span>
+                        {{ feature.name | capitalize }}
+                    </a>
+                </td>
+                <td style="white-space: nowrap">
+                    {{ feature.description }}
+                    {% if feature.requires %}
+                    (requires {{ feature.requires | join: ", " }})
+                    {% endif %}
+                </td>
+                <td>
+                    {% if feature.artifacts.files %}
+                    <div>
+                        <strong>Files:</strong>
+                        {% assign sorted_files = feature.artifacts.files | sort %}
+                        {% for file in sorted_files %}
+                        <code>{{ file }}</code>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if feature.artifacts.targets %}
+                    <div>
+                        <strong>Targets:</strong>
+                        {% assign sorted_targets = feature.artifacts.targets | sort %}
+                        {% for target in sorted_targets %}
+                        <code>make {{ target }}</code>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if feature.artifacts.reqs %}
+                    <div>
+                        {% assign sorted_reqs = feature.artifacts.reqs | sort %}
+                        <strong>Requirements:</strong>
+                        {% for req in sorted_reqs %}
+                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if feature.artifacts.reqs_dev %}
+                    <div>
+                        {% assign sorted_reqs_dev = feature.artifacts.reqs_dev | sort %}
+                        <strong>Requirements (dev):</strong>
+                        {% for req in sorted_reqs_dev %}
+                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if feature.artifacts.reqs_prod %}
+                    <div>
+                        {% assign sorted_reqs_prod = feature.artifacts.reqs_prod | sort %}
+                        <strong>Requirements (prod):</strong>
+                        {% for req in sorted_reqs_prod %}
+                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if feature.artifacts.misc %}
+                    <div>
+                        <strong>Misc.:</strong>
+                        {% for item in feature.artifacts.misc %}
+                        {{ item }}{% unless forloop.last %}, {% endunless %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                </td>
+                <td>
+                    {% if feature.maturity == 0 %}
+                    Core
+                    {% elsif feature.maturity == 1 %}
+                    Stable
+                    {% elsif feature.maturity == 2 %}
+                    Beta
+                    {% elsif feature.maturity == 3 %}
+                    Alpha
+                    {% elsif feature.maturity == 4 %}
+                    Pre-Alpha
+                    {% elsif feature.maturity == 5 %}
+                    Dev
+                    {% elsif feature.maturity == 10 %}
+                    Outdated
+                    {% else %}
+                    ???
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3>Brew your own!</h3>
+
+        <p>
+            To extend medikit, you have two options.
+        </p>
+
+        <h4>Extend inline</h4>
+
+        <p>
+            If you only need a "local" extension, that is only valid in a given project, you can extend it inline
+            in the <code>Projectfile</code>, most probably by listening to an event sent either by medikit, or a
+            medikit feature.
+        </p>
+
+        <p>
+            Here is an example that extends the <code>make</code> feature to add an environment variable and a target:
+        </p>
+
+        <pre><code class="python">from medikit import listen, require
+
+make = require('make')
+
+@listen(make.on_generate)
+def on_make_generate(event):
+    event.makefile['HELLO_NAME'] = 'World'
+    event.makefile.add_target('hello', '@echo "Hello, $(HELLO_NAME)"', phony=True, doc="Say Hello")</code></pre>
+
+        <p>
+            All future <code>medikit update</code> calls will update your project with your customization.
+        </p>
+
+        <h4>Write a feature</h4>
+
+        <p>
+            The second option is to write a feature class, which is mostly a bunch of event listeners and a mechanism
+            to autoregister into medikit.
+        </p>
+
+        <p>
+            Have a look at the <a href="https://github.com/python-medikit/medikit/tree/master/medikit/feature"
+                                  target="_blank">builtin features source code</a>, and write a similar class in your
+            own package. Then, you'll just need to add it as a <code>medikit.feature</code> entrypoint and install your
+            package. See
+            <a href="https://github.com/python-medikit/medikit/blob/master/Projectfile" target="_blank">medikit's own
+                Projectfile</a>.
+        </p>
+
+        <p>
+            As the mechanism for both inline extension and packaged features are the same, it's usually a good idea to
+            test an idea / feature locally within a project, and only refactor it as a feature once you're satisfied
+            enough.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <h2>License</h2>
+        <p>
+            Medikit and the surrounding material (like this website) is licensed under the Apache License, version 2.0.
+        </p>
+        <p>
+            The dependencies and other tools used by the features have their own licenses, please have a look at their
+            websites if you're unsure about what's allowed.
+        </p>
+    </div>
 
 </div>
