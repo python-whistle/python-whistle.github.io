@@ -1,12 +1,13 @@
 # Site settings
-title: Medikit
+title: Mondrian
 email: romain@dorgueil.net
-description: Medikit is your technical sidekick for python project packaging, or simply your release engineering assistant.
+description: Mondrian is a tiny package that auto-configures python.logging module witrh reasonable defaults and enhances its default output formatters for readability.
+
 
 baseurl: ""
-url: https://python-medikit.github.io/ # the base hostname & protocol for your site
-git_address: https://github.com/python-medikit/medikit
-git_edit_address: https://github.com/python-medikit/python-medikit.github.io
+url: https://python-mondrian.github.io/ # the base hostname & protocol for your site
+git_address: https://github.com/python-mondrian/mondrian
+git_edit_address: https://github.com/python-mondrian/python-mondrian.github.io
 
 # theme options from https://bootswatch.com/
 # comment out this to use default Bootstrap

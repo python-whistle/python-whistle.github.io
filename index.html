@@ -12,20 +12,16 @@ layout: default
 
 <div class="header-container jumbotron">
     <div class="container">
-        <h1>Medikit</h1>
-        <h2>Your automated release engineer assistant</h2>
-        <p>Medikit automates keeping your projects' boilerplate files and directory sane and up to date.</p>
-        <p>It (optionally) generates and maintains a bunch of files, updating them according to rules you define.</p>
-        <p>It's not a dependency. All changes are be commited in your source tree.</p>
-        <p>You write amazing code, Medikit focuses on keeping it clean and ordered.</p>
+        <h1>Mondrian</h1>
+        <h2>Python's logging module on steroids</h2>
+        <p>Mondrian configures the python standard logging module with reasonable defaults, and enhance its default
+            output formatters for better readability.</p>
 
         <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="http://medikit.rdc.li/en/latest/install.html" target="_blank"
+            <a class="btn btn-primary btn-lg" href="https://pypi.org/project/mondrian/" target="_blank"
                role="button">Install</a>
-            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/" target="_blank"
+            <a class="btn btn-primary btn-outline-inverse btn-lg" href="#documentation"
                role="button">Documentation</a>
-            <a class="btn btn-primary btn-outline-inverse btn-lg" href="http://medikit.rdc.li/en/latest/features.html"
-               target="_blank" role="button">Features</a>
         </p>
     </div>
 </div>
@@ -35,21 +31,19 @@ layout: default
 
     <div class="row">
         <div class="col-md-10">
-            <h2 class="header-light regular-pad">What is Medikit?</h2>
+            <h2 class="header-light regular-pad">What is Mondrian?</h2>
             <blockquote>
                 <p>
-                    Medikit generates and updates all non-business related files in your python or polyglot projects.
+                    Mondrian is a small library that will make you use python <code>logging</code> module, once and for
+                    all.
                 </p>
                 <p>
-                    It's based on a extensible features set that combines to build the exact right files (like
-                    <code>Makefile</code>, <code>setup.py</code>, <code>MANIFEST.in</code>, <code>.gitignore</code>,
-                    <code>Dockerfile</code>, tests directory structure, package directory structure, etc.)
+                    Most python coders who avoids the systematic usage of <code>logging</code> in their projects does
+                    so because it feels complicated to setup, but it's not.
                 </p>
                 <p>
-                    Want to update your project? Run <code>make update</code>.
-                </p>
-                <p>
-                    First time in a new project? Run <code>make help</code>.
+                    Mondrian provides a one-call interface to its configuration, with pretty formatters that makes you
+                    feel great.
                 </p>
             </blockquote>
         </div>
@@ -57,242 +51,67 @@ layout: default
             <br>
             <div class="clearfix">
                 <div class="pull-left" style="margin-right:0.5em">
-                    <a class="github-button" href="https://github.com/python-medikit/medikit/fork"
-                       data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Medikit on GitHub"></a>
+                    <a class="github-button" href="https://github.com/python-mondrian/mondrian/fork"
+                       data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Mondrian on GitHub"></a>
                 </div>
                 <div class="pull-left">
-                    <a class="github-button" href="https://github.com/python-medikit/medikit" data-icon="octicon-star"
-                       data-size="large" data-show-count="true" aria-label="Star Medikit on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/python-mondrian/mondrian" data-icon="octicon-star"
+                       data-size="large" data-show-count="true" aria-label="Star Mondrian on GitHub">Star</a>
                 </div>
             </div>
-            <img src="img/medikit-logo.png" alt="Medikit, first-aid kit for release engineering in python."
+            <img src="img/mondrian-logo.png" alt="Mondrian, python's logging on steroids."
                  class="img-responsive">
+            <a name="documentation"></a>
         </div>
     </div>
 
     <hr>
 
     <div class="row">
-        <div class="col-sm-4">
-            <h2 class="text-center"><i class="fa fa-pencil" aria-hidden="true"></i></h2>
-            <h3 class="text-center">Not a dependency</h3>
-            <p>
-                Medikit is an “eventual” dependency, meaning that developpers won't need it to actually use the project.
-                All results of its execution are commited in your git repository.
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <h2 class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i></h2>
-            <h3 class="text-center">One config file</h3>
-            <p>
-                The only configuration file required is a <code>Projectfile</code>, which contains regular Python code.
-                It describes the feature you use (i.e Python, Make, Git, Docker and Pytest), the custom choices you
-                took about them and eventually some project-specific features (wanna add a <code>make sandwich</code>
-                command? Three lines in there).
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <h2 class="text-center"><i class="fa fa-code-fork" aria-hidden="true"></i></h2>
-            <h3 class="text-center">One entry point</h3>
-            <p>
-                Once you run <code>medikit update</code>, you'll get a <code>Makefile</code> that contains everything
-                a developper needs to use this project. Whatever you have, it is the exposed interface, and all
-                newcomers can run <code>make help</code> to understand their possibilities.
-            </p>
-        </div>
-        <a name="features"></a>
-    </div>
+        <h2>Quick start</h2>
 
-    <hr>
+        <p>Install the <code>mondrian</code> package:</p>
 
-    <div class="row">
-        <h2>Features</h2>
+        <pre><code> $ pip install mondrian</code></pre>
+
+        <p>In your project's entrypoints (for example, <code>&lt;yourpackage&gt;/__main__.py</code>, call
+            <code>mondrian.setup()</code>:</p>
+
+        <pre><code class="python">import mondrian
+import logging
+
+logger = logging.getLogger()
+
+def main():
+    ...
+    logger.info('Hello')
+    ...
+
+if __name__ == '__main__':
+    mondrian.setup(excepthook=True)
+    logger.setLevel(logging.INFO)
+    main()</code></pre>
+
 
         <p>
-            The base building blocks of a Medikit-managed projects are combinable features.
-        </p>
-        <p>
-            To add a feature, you need a <code>Projectfile</code> at your project's root (which is written in python),
-            and <code>require(...)</code> the feature:
-        </p>
-
-        <pre><code class="python">from medikit import require
-python = require('python')
-
-python.setup(
-    name='acme'
-)</code></pre>
-
-        <p>
-            You then need to run <code>medikit update</code> to apply changes to your project's codebase (or <code>make
-            update</code>).
-        </p>
-
-        <h3>List of builtin features</h3>
-
-        <table class="table table-bordered">
-            <tr>
-                <th>
-                    Feature
-                </th>
-                <th>
-                    Description
-                </th>
-                <th>
-                    Artifacts
-                </th>
-                <th>
-                    Maturity
-                </th>
-            </tr>
-            {% assign sorted_features = site.data.features | sort: "name" | sort: "maturity" %}
-            {% for feature in sorted_features %}
-            <tr>
-                <td style="white-space: nowrap">
-                    <a href="http://medikit.rdc.li/en/latest/features/{{ feature.name }}.html"
-                       title="Read the {{ feature.name | capitalize }} feature documentation"
-                       target="_blank">
-                        <i class="fa fa-book"></i>&nbsp;<span class="sr-only">Documentation</span>
-                        {{ feature.name | capitalize }}
-                    </a>
-                </td>
-                <td style="white-space: nowrap">
-                    {{ feature.description }}
-                    {% if feature.requires %}
-                    (requires {{ feature.requires | join: ", " }})
-                    {% endif %}
-                </td>
-                <td>
-                    {% if feature.artifacts.files %}
-                    <div>
-                        <strong>Files:</strong>
-                        {% assign sorted_files = feature.artifacts.files | sort %}
-                        {% for file in sorted_files %}
-                        <code>{{ file }}</code>{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    {% if feature.artifacts.targets %}
-                    <div>
-                        <strong>Targets:</strong>
-                        {% assign sorted_targets = feature.artifacts.targets | sort %}
-                        {% for target in sorted_targets %}
-                        <code>make {{ target }}</code>{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    {% if feature.artifacts.reqs %}
-                    <div>
-                        {% assign sorted_reqs = feature.artifacts.reqs | sort %}
-                        <strong>Requirements:</strong>
-                        {% for req in sorted_reqs %}
-                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    {% if feature.artifacts.reqs_dev %}
-                    <div>
-                        {% assign sorted_reqs_dev = feature.artifacts.reqs_dev | sort %}
-                        <strong>Requirements (dev):</strong>
-                        {% for req in sorted_reqs_dev %}
-                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    {% if feature.artifacts.reqs_prod %}
-                    <div>
-                        {% assign sorted_reqs_prod = feature.artifacts.reqs_prod | sort %}
-                        <strong>Requirements (prod):</strong>
-                        {% for req in sorted_reqs_prod %}
-                        <code>{{ req }}</code>{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                    {% if feature.artifacts.misc %}
-                    <div>
-                        <strong>Misc.:</strong>
-                        {% for item in feature.artifacts.misc %}
-                        {{ item }}{% unless forloop.last %}, {% endunless %}
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-
-                </td>
-                <td>
-                    {% if feature.maturity == 0 %}
-                    Core
-                    {% elsif feature.maturity == 1 %}
-                    Stable
-                    {% elsif feature.maturity == 2 %}
-                    Beta
-                    {% elsif feature.maturity == 3 %}
-                    Alpha
-                    {% elsif feature.maturity == 4 %}
-                    Pre-Alpha
-                    {% elsif feature.maturity == 5 %}
-                    Dev
-                    {% elsif feature.maturity == 10 %}
-                    Outdated
-                    {% else %}
-                    ???
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-
-        <h3>Brew your own!</h3>
-
-        <p>
-            To extend medikit, you have two options.
-        </p>
-
-        <h4>Extend inline</h4>
-
-        <p>
-            If you only need a "local" extension, that is only valid in a given project, you can extend it inline
-            in the <code>Projectfile</code>, most probably by listening to an event sent either by medikit, or a
-            medikit feature.
+            You can remove the <code>excepthook=True</code> if you don't want mondrian to override the default exception
+            handler for better formating. But it's nice, try it first.
         </p>
 
         <p>
-            Here is an example that extends the <code>make</code> feature to add an environment variable and a target:
+            Now, use python's <code>logging</code> module in your project's files:
         </p>
 
-        <pre><code class="python">from medikit import listen, require
+        <pre><code class="python">import logging
 
-make = require('make')
+logger = logging.getLogger(__name__)
 
-@listen(make.on_generate)
-def on_make_generate(event):
-    event.makefile['HELLO_NAME'] = 'World'
-    event.makefile.add_target('hello', '@echo "Hello, $(HELLO_NAME)"', phony=True, doc="Say Hello")</code></pre>
+def some_very_nice_function():
+    ...
+    logger.warning('Ola amigo!')
+    ...</code></pre>
 
-        <p>
-            All future <code>medikit update</code> calls will update your project with your customization.
-        </p>
-
-        <h4>Write a feature</h4>
-
-        <p>
-            The second option is to write a feature class, which is mostly a bunch of event listeners and a mechanism
-            to autoregister into medikit.
-        </p>
-
-        <p>
-            Have a look at the <a href="https://github.com/python-medikit/medikit/tree/master/medikit/feature"
-                                  target="_blank">builtin features source code</a>, and write a similar class in your
-            own package. Then, you'll just need to add it as a <code>medikit.feature</code> entrypoint and install your
-            package. See
-            <a href="https://github.com/python-medikit/medikit/blob/master/Projectfile" target="_blank">medikit's own
-                Projectfile</a>.
-        </p>
-
-        <p>
-            As the mechanism for both inline extension and packaged features are the same, it's usually a good idea to
-            test an idea / feature locally within a project, and only refactor it as a feature once you're satisfied
-            enough.
-        </p>
+        <p>That's all, folks!</p>
     </div>
 
     <hr>
@@ -300,11 +119,7 @@ def on_make_generate(event):
     <div class="row">
         <h2>License</h2>
         <p>
-            Medikit and the surrounding material (like this website) is licensed under the Apache License, version 2.0.
-        </p>
-        <p>
-            The dependencies and other tools used by the features have their own licenses, please have a look at their
-            websites if you're unsure about what's allowed.
+            Mondrian and the surrounding material (like this website) is licensed under the Apache License, version 2.0.
         </p>
     </div>
 
