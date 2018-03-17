@@ -12,13 +12,14 @@ layout: default
 
 <div class="header-container jumbotron">
     <div class="container">
-        <h1>Mondrian</h1>
-        <h2>Python's logging module on steroids</h2>
-        <p>Mondrian configures the python standard logging module with reasonable defaults, and enhance its default
-            output formatters for better readability.</p>
+        <h1>Whistle</h1>
+        <h2>Event Dispatcher for Python</h2>
+
+        <p>Whistle is a simple tool that allow your application components to communicate with each other by dispatching
+            events and listening to them.</p>
 
         <p class="text-center">
-            <a class="btn btn-primary btn-lg" href="https://pypi.org/project/mondrian/" target="_blank"
+            <a class="btn btn-primary btn-lg" href="https://pypi.org/project/whistle/" target="_blank"
                role="button">Install</a>
             <a class="btn btn-primary btn-outline-inverse btn-lg" href="#documentation"
                role="button">Documentation</a>
@@ -31,19 +32,17 @@ layout: default
 
     <div class="row">
         <div class="col-md-10">
-            <h2 class="header-light regular-pad">What is Mondrian?</h2>
+            <h2 class="header-light regular-pad">What is Whistle?</h2>
             <blockquote>
                 <p>
-                    Mondrian is a small library that will make you use python <code>logging</code> module, once and for
-                    all.
+                    Whistle is an Event Dispatcher library for the Python 3.5+ language.
                 </p>
                 <p>
-                    Most python coders who avoids the systematic usage of <code>logging</code> in their projects does
-                    so because it feels complicated to setup, but it's not.
+                    It's largely inspired from Symfony's EventDispatcher component.
                 </p>
                 <p>
-                    Mondrian provides a one-call interface to its configuration, with pretty formatters that makes you
-                    feel great.
+                    Using an event dispatcher is a great way to write loosely coupled extensible code, having each part
+                    only communicate using light events.
                 </p>
             </blockquote>
         </div>
@@ -51,15 +50,15 @@ layout: default
             <br>
             <div class="clearfix">
                 <div class="pull-left" style="margin-right:0.5em">
-                    <a class="github-button" href="https://github.com/python-mondrian/mondrian/fork"
-                       data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Mondrian on GitHub"></a>
+                    <a class="github-button" href="https://github.com/python-whistle/whistle/fork"
+                       data-icon="octicon-repo-forked" data-size="large" aria-label="Fork Whistle on GitHub"></a>
                 </div>
                 <div class="pull-left">
-                    <a class="github-button" href="https://github.com/python-mondrian/mondrian" data-icon="octicon-star"
-                       data-size="large" data-show-count="true" aria-label="Star Mondrian on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/python-whistle/whistle" data-icon="octicon-star"
+                       data-size="large" data-show-count="true" aria-label="Star Whistle on GitHub">Star</a>
                 </div>
             </div>
-            <img src="img/mondrian-logo.png" alt="Mondrian, python's logging on steroids."
+            <img src="img/whistle-logo.png" alt="Whistle, python's event dispatcher."
                  class="img-responsive">
             <a name="documentation"></a>
         </div>
@@ -70,53 +69,28 @@ layout: default
     <div class="row">
         <h2>Quick start</h2>
 
-        <p>Install the <code>mondrian</code> package:</p>
+        <p>Install the <code>whistle</code> package:</p>
 
-        <pre><code> $ pip install mondrian</code></pre>
+        <pre><code> $ pip install whistle</code></pre>
 
-        <p>In your project's entrypoints (for example, <code>&lt;yourpackage&gt;/__main__.py</code>, call
-            <code>mondrian.setup()</code>:</p>
+        <h3>Create an event dispatcher</h3>
 
-        <pre><code class="python">import mondrian
-import logging
+        <pre><code class="python">from whistle import EventDispatcher
 
-logger = logging.getLogger()
+dispatcher = EventDispatcher()</code></pre>
 
-def main():
-    ...
-    logger.info('Hello')
-    ...
+        <h3>Add a listener to react to events</h3>
 
-if __name__ == '__main__':
-    mondrian.setup(excepthook=True)
-    logger.setLevel(logging.INFO)
-    main()</code></pre>
+        <pre><code class="python">def on_spectacle_starts(event):
+    print('Please turn down your phones!')
+
+dispatcher.add_listener('spectacle.starts', on_spectacle_starts)</code></pre>
+
+        <h3>Dispatch it!</h3>
+
+        <pre><code class="python">dispatcher.dispatch('spectacle.starts')</code></pre>
 
 
-        <p>
-            You can remove the <code>excepthook=True</code> if you don't want mondrian to override the default exception
-            handler for better formating. But it's nice, try it first.
-        </p>
-
-        <p>
-            Now, use python's <code>logging</code> module in your project's files:
-        </p>
-
-        <pre><code class="python">import logging
-
-logger = logging.getLogger(__name__)
-
-def some_very_nice_function():
-    ...
-    logger.warning('Ola amigo!')
-    ...</code></pre>
-
-        <p>That's all, folks!</p>
-
-        <div class="text-center">
-            <img src="img/example.png" style="max-width: 718px; margin: auto;" alt="Your python logger now looks like this"
-                 class="img-responsive">
-        </div>
     </div>
 
     <hr>
@@ -124,7 +98,7 @@ def some_very_nice_function():
     <div class="row">
         <h2>License</h2>
         <p>
-            Mondrian and the surrounding material (like this website) is licensed under the Apache License, version 2.0.
+            Whistle and the surrounding material (like this website) is licensed under the Apache License, version 2.0.
         </p>
     </div>
 

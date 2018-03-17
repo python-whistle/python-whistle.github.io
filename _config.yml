@@ -1,13 +1,13 @@
 # Site settings
-title: Mondrian
+title: Whistle
 email: romain@dorgueil.net
-description: Mondrian is a tiny package that auto-configures python.logging module witrh reasonable defaults and enhances its default output formatters for readability.
+description: Whistle is a simple python 3.5+ library that allow your application components to communicate with each other by dispatching events and listening to them.
 
 
 baseurl: ""
-url: https://python-mondrian.github.io/ # the base hostname & protocol for your site
-git_address: https://github.com/python-mondrian/mondrian
-git_edit_address: https://github.com/python-mondrian/python-mondrian.github.io
+url: https://python-whistle.github.io/ # the base hostname & protocol for your site
+git_address: https://github.com/python-whistle/whistle
+git_edit_address: https://github.com/python-whistle/python-whistle.github.io
 
 # theme options from https://bootswatch.com/
 # comment out this to use default Bootstrap
