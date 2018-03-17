@@ -1,44 +1,25 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
+
 @charset "utf-8";
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 
-
-
-@import
-  {% if site.bootwatch %}
-    "bootswatch/{{site.bootwatch | downcase}}/variables",
-  {% endif %}
-
-  "bootstrap",
-
-  {% if site.bootwatch %}
-    "bootswatch/{{site.bootwatch | downcase}}/bootswatch",
-  {% endif %}
-
-  "syntax-highlighting",
-  "typeahead"
-;
+@import {% if site.bootwatch %}"bootswatch/{{site.bootwatch | downcase}}/variables", {% endif %} "bootstrap", {% if site.bootwatch %} "bootswatch/{{site.bootwatch | downcase}}/bootswatch", {% endif %} "syntax-highlighting", "typeahead";
 
 html {
   position: relative;
   min-height: 100%;
 }
-body {
-  padding-top: $navbar-height + $navbar-margin-bottom;
-  margin-bottom: 46px;
-}
 
-.navbar-brand{
-  img{
+
+.navbar-brand {
+  img {
     margin: -$navbar-padding-vertical 0;
     height: $navbar-height;
     padding: 10px 0;
   }
 }
-
 
 .header-container {
   background-color: black;
@@ -51,22 +32,50 @@ body {
   // background-attachment: fixed;
   background-size: cover;
   background-position: center 36%;
-  margin-top: -37px;
+  margin-top: 51px;
 }
+
 .navbar-container {
   font-size: 16px;
 }
+
 .page-content {
   padding-bottom: 20px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 46px;
-  padding-top: 10px;
-  background-color: $gray-lighter;
-  color: $gray-dark;
+
+ .footer {
+   padding-top: 50px;
+   padding-bottom: 50px;
+   margin-top: 50px;
+   color: #99979c;
+   text-align: center;
+   background-color: #2a2730
+ }
+
+.footer a {
+  color: #fff
+}
+
+.footer-links {
+  padding-left: 0;
+}
+
+.footer-links li {
+  display: inline-block
+}
+
+.footer-links li + li {
+  margin-left: 15px
+}
+
+@media (min-width: 768px) {
+  .footer {
+    text-align: left
+  }
+
+  .footer p {
+    margin-bottom: 0
+  }
 }
 
 .post-list-container {
@@ -74,6 +83,7 @@ body {
     font-weight: bold;
   }
 }
+
 *[id]:before {
   display: block;
   content: " ";
@@ -81,6 +91,7 @@ body {
   height: 75px;
   visibility: hidden;
 }
-.navbar-form .has-feedback .form-control-feedback{
-  top:10px
+
+.navbar-form .has-feedback .form-control-feedback {
+  top: 10px
 }
