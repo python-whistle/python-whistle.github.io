@@ -21,7 +21,7 @@ layout: default
         <p class="text-center">
             <a class="btn btn-primary btn-lg" href="https://pypi.org/project/whistle/" target="_blank"
                role="button">Install</a>
-            <a class="btn btn-primary btn-outline-inverse btn-lg" href="#documentation"
+            <a class="btn btn-primary btn-outline-inverse btn-lg" href="https://python-whistle.readthedocs.io/" target="_blank"
                role="button">Documentation</a>
         </p>
     </div>
@@ -35,14 +35,14 @@ layout: default
             <h2 class="header-light regular-pad">What is Whistle?</h2>
             <blockquote>
                 <p>
-                    Whistle is an Event Dispatcher library for the Python 3.5+ language.
+                    Whistle is a lightweight Event Dispatcher library for Python 3.10+ that enables decoupled application communication through event dispatching and listening.
                 </p>
                 <p>
                     It's largely inspired from Symfony's EventDispatcher component.
                 </p>
                 <p>
                     Using an event dispatcher is a great way to write loosely coupled extensible code, having each part
-                    only communicate using light events.
+                    only communicate using light events, making your code more modular, testable, and maintainable.
                 </p>
             </blockquote>
         </div>
@@ -61,6 +61,26 @@ layout: default
             <img src="img/whistle-logo.png" alt="Whistle, python's event dispatcher."
                  class="img-responsive">
             <a name="documentation"></a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <h2>Key Features</h2>
+        <div class="col-md-6">
+            <ul>
+                <li><strong>Synchronous and asynchronous dispatching</strong> - Choose the right dispatcher for your use case</li>
+                <li><strong>Priority-based listener execution</strong> - Control the order listeners run</li>
+                <li><strong>Event propagation control</strong> - Stop event flow when needed</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul>
+                <li><strong>Type safety</strong> - Prevent mixing sync and async listeners</li>
+                <li><strong>Custom events</strong> - Attach domain-specific data to events</li>
+                <li><strong>Zero dependencies</strong> - Lightweight and easy to integrate</li>
+            </ul>
         </div>
     </div>
 
@@ -86,9 +106,17 @@ dispatcher = EventDispatcher()</code></pre>
 
 dispatcher.add_listener('spectacle.starts', on_spectacle_starts)</code></pre>
 
+        <p>Or use the decorator syntax for convenience:</p>
+
+        <pre><code class="python">@dispatcher.listen('spectacle.starts')
+def on_spectacle_starts(event):
+    print('Please turn down your phones!')
+</code></pre>
+
         <h3>Dispatch it!</h3>
 
-        <pre><code class="python">dispatcher.dispatch('spectacle.starts')</code></pre>
+        <pre><code class="python">dispatcher.dispatch('spectacle.starts')
+# Output: Please turn down your phones!</code></pre>
 
 
     </div>
